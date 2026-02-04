@@ -76,5 +76,6 @@ class WorkItemController extends Controller
     public function destroy(WorkItem $workItem)
     {
         $workItem->delete();
+        return response()->json(['message' => 'Work Item deleted successfully', 'status' => 200]);
     }
 }

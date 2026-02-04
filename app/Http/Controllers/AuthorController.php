@@ -72,5 +72,6 @@ class AuthorController extends Controller
     public function destroy(Author $author)
     {
         $author->delete();
+        return response()->json(['message' => 'Author deleted successfully', 'status' => 200]);
     }
 }

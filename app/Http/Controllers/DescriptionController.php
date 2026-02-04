@@ -72,5 +72,6 @@ class DescriptionController extends Controller
     public function destroy(Description $description)
     {
         $description->delete();
+        return response()->json(['message' => 'Description deleted successfully', 'status' => 200]);
     }
 }
