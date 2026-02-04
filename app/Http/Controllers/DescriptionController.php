@@ -12,7 +12,7 @@ class DescriptionController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Description::all(), 200);
     }
 
     /**
@@ -20,7 +20,10 @@ class DescriptionController extends Controller
      */
     public function create()
     {
-        //
+        $description = new Description;
+        $description->work_item_id = 1;
+        $description->description_text = 'Description Number 1';
+        $description->save();
     }
 
     /**
@@ -36,7 +39,7 @@ class DescriptionController extends Controller
      */
     public function show(Description $description)
     {
-        //
+        return response()->json($description->toArray(), 200);
     }
 
     /**
@@ -52,7 +55,10 @@ class DescriptionController extends Controller
      */
     public function update(Request $request, Description $description)
     {
-        //
+        $allInput = $request->all();
+        $description->work_item_id = $allInput["new_work_item_id"];
+        $description->description_text = $allInput["new_description_text"];
+        $description->save();
     }
 
     /**
@@ -60,6 +66,6 @@ class DescriptionController extends Controller
      */
     public function destroy(Description $description)
     {
-        //
+        $description->delete();
     }
 }

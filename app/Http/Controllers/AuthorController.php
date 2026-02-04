@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
-    /**
+    /**no
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return response()->json(Author::all(), 200);
     }
 
     /**
@@ -20,7 +20,10 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        $author = new Author;
+        $author->name = 'Author Number 1';
+        $author->email = 'author1@example.com';
+        $author->save();
     }
 
     /**
@@ -36,7 +39,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        return response()->json($author->toArray(), 200);
     }
 
     /**
@@ -52,7 +55,10 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $allInput = $request->all();
+        $author->name = $allInput["new_name"];
+        $author->email = $allInput["new_email"];
+        $author->save();
     }
 
     /**
@@ -60,6 +66,6 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
     }
 }

@@ -12,7 +12,7 @@ class WorkItemController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(WorkItem::all(), 200);
     }
 
     /**
@@ -20,7 +20,11 @@ class WorkItemController extends Controller
      */
     public function create()
     {
-        //
+        $workItem = new WorkItem;
+        $workItem->title = 'Work Item Number 1';
+        $workItem->author_id = 1;
+        $workItem->status = 'pending';
+        $workItem->save();
     }
 
     /**
@@ -36,7 +40,7 @@ class WorkItemController extends Controller
      */
     public function show(WorkItem $workItem)
     {
-        //
+        return response()->json($workItem->toArray(), 200);
     }
 
     /**
@@ -52,7 +56,11 @@ class WorkItemController extends Controller
      */
     public function update(Request $request, WorkItem $workItem)
     {
-        //
+        $allInput = $request->all();
+        $workItem->title = $allInput["new_title"];
+        $workItem->author_id = $allInput["new_author_id"];
+        $workItem->status = $allInput["new_status"];
+        $workItem->save();
     }
 
     /**
@@ -60,6 +68,6 @@ class WorkItemController extends Controller
      */
     public function destroy(WorkItem $workItem)
     {
-        //
+        $workItem->delete();
     }
 }
