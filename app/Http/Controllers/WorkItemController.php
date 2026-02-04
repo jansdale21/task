@@ -32,7 +32,14 @@ class WorkItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
+            'assigned_to' => 'required|string|max:255',
+        ]);
+        $workItem = WorkItem::create($validated);
+        return response()->json($workItem, 201);
     }
 
     /**

@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Description extends Model
 {
-    //
+    protected $fillable = [
+        'content',
+        'task_id',
+    ];
 }

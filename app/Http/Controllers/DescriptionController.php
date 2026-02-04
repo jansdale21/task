@@ -31,7 +31,12 @@ class DescriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'work_item_id' => 'required|integer|exists:work_items,id',
+            'description_text' => 'required|string',
+        ]);
+        $description = Description::create($validated);
+        return response()->json($description, 201);
     }
 
     /**
